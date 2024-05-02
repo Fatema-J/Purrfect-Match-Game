@@ -30,9 +30,14 @@ h1{
   /* margin: 5%; */
 }
 
+.element-placeholder:hover{
+  background-color: rgb(67, 125, 125);
+}
 
 .element{
   border-radius: 50%;
   background-color: rgb(44, 60, 55);
   padding: 1.5em;
 }
+
+
