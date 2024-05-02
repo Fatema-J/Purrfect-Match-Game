@@ -4,7 +4,7 @@
 
 **Iris Game** 🌈👁️‍🗨️ is a visual challenge designed to test your vision and color perception. In this game, you’ll be presented with an nxn grid of circles, some of which will have a different color. Your goal is to identify and select the circle that stands out as quickly as possible!🎯
 
-[game wireframe](https://github.com/Fatema-J/iris-game/blob/main/iris%20game%20ui.png)
+![game wireframe](https://github.com/Fatema-J/iris-game/blob/main/iris%20game%20ui.png)
 
 
 ## Game Logic
