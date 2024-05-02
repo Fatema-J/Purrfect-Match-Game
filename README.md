@@ -1,32 +1,44 @@
-# Iris Game
+# Iris Game 🌈
 
 ## Description
 
-**Iris Game** 🌈👁️‍🗨️ is a visual challenge designed to test your vision and color perception. In this game, you’ll be presented with an nxn grid of circles, some of which will have a different color. Your goal is to identify and select the circle that stands out as quickly as possible!🎯
+Welcome to the exciting world of our match-3 puzzle game! In this colorful and addictive game, your goal is to strategically match three or more identical elements to earn points🎯
 
-![game wireframe](https://github.com/Fatema-J/iris-game/blob/main/iris%20game%20ui.png)
 
 
 ## Game Logic
 
-1. The game generates an nxn grid of circles on the screen. 
+1. The game generates an nxn grid of four different elements on the screen. Each cell in the grid can contain one of these elements.
 
-2. Two random colors are chosen for each level. These colors are then applied to random circles within the grid.
 
-3. Your task is to find the circle that has the different color. Click on it before the timer runs out! The faster you spot the odd one out, the more points you’ll earn.
 
-4. As you progress through levels, the challenge intensifies. The differences between colors become subtler, making it harder to pinpoint the unique circle.
+2. When the player choose an element, we need to:
+    - Identify possible drag targets (i.e., adjacent cells where the element can be moved).
+    - Check if the chosen element will make a match with adjacent elements.
+    - If the chosen element will make a match (e.g., three or more identical elements in a row/column), allow the move.
+  
+     
+3. If a match is allowed:
+    - Delete the matched elements from the grid.
+    - Drop new elements from above to replace the matched ones.
+    - This can be done by shifting down the elements in the columns above the matched cells and generating new elements at the top.
+    - The new elements can be randomly chosen from the available pool of elements.
+    - check if the new elements match.
+
+4. The player will earn points for matched elements. 
 
 ## Additional Features
 
-- [ ] Increase number of circles each few levels.
-- [ ] Light Mode
+
+- [ ] Dark Mode
 - [ ] Make customized branding for the game (logo, colors, fonts)
 - [ ] Add sounds for every move
 - [ ] Pause button
+- [ ] Drag instead of choosing
+- [ ] Timer
 
 
 
 ## Credits
 
-The concept for **Iris Game** was inspired by [Lyto Different Colors](https://www.gamen.com/game111), a similar game primarily played on mobile devices.
+The concept for **Iris Game** was inspired by Candy Crush Saga.

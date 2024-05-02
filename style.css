@@ -1,0 +1,38 @@
+body{
+  min-height: 100vh;
+  min-width: 100vw;
+  margin:0;
+}
+
+h1{
+  text-align:center;
+}
+
+.gameboard{
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(5, 20%);
+  max-height: 20em; 
+  max-width: 20em;
+  gap: 10px;
+  margin:auto;
+
+}
+
+
+
+.element-placeholder{
+  display: flex ;
+  align-items: center;
+  justify-content: center;
+  background-color: aquamarine;
+  padding: 2em;
+  /* margin: 5%; */
+}
+
+
+.element{
+  border-radius: 50%;
+  background-color: rgb(44, 60, 55);
+  padding: 1.5em;
+}
