@@ -1,4 +1,4 @@
-# Alwan Game
+# Iris Game
 
 ## Description
 
