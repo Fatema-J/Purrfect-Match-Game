@@ -156,43 +156,65 @@ const findAllMatches =() =>{
   elements = document.querySelectorAll('.element')
 
   let elementsToBeCleared = []
-  let tracer = 1
+  let rowTracer = 1
+  let colTracer = 1
   for(let i = 0; i<steps; i++){
     let rowColor = elements[i*steps].style.backgroundColor
-    console.log('row: ',i*steps);
-    
+    let colColor = elements[i*steps].style.backgroundColor
+
     for(let j = 1; j<steps; j++){
-      console.log(i*steps+j);
       
+      //horizontally
       if(elements[i*steps+j].style.backgroundColor === rowColor){
-        console.log('found something at', i*steps+j);
-        tracer++ //trace till it reacehes > 3
+        rowTracer++
 
         if(j == steps-1){ //last item in the row
-          if (tracer >= 3){
-            for(let t = 0 ; t < tracer; t++){              
+          if (rowTracer >= 3){
+            for(let t = 0 ; t < rowTracer; t++){              
               elementsToBeCleared.push(i*steps+j-t)
             }
             console.log("cells to be cleared: ", elementsToBeCleared);
           }
-          tracer = 1
+          rowTracer = 1
         }
-
       } else{
-        if (tracer >= 3){
-          for(let t = 0 ; t < tracer; t++){
-            
+        if (rowTracer >= 3){
+          for(let t = 0 ; t < rowTracer; t++){
             elementsToBeCleared.push(i*steps+j-t-1)
           }
           console.log("cells to be cleared: ", elementsToBeCleared);
         }
-        tracer = 1
+        rowTracer = 1
         rowColor = elements[i*steps+j].style.backgroundColor
       }
-    }
-    console.log('-----------------');
+
+      if(elements[j*steps+i].style.backgroundColor === colColor){
+        colTracer++
+
+        if(j== steps-1){
+          if(colTracer >= 3){
+            for(let t = 0 ; t < colTracer; t++){              
+              elementsToBeCleared.push(j*steps+i-(t*steps))
+            }
+            console.log("cells to be cleared: ", elementsToBeCleared);
+          }
+          colTracer = 1
+        }
+      } else{
+        if(colTracer >= 3){
+          for(let t = 0 ; t < colTracer; t++){              
+            elementsToBeCleared.push(j*steps+i-(t*steps))
+          }
+          console.log("cells to be cleared: ", elementsToBeCleared);
+        }
+        colTracer = 1
+        colColor = elements[j*steps+i].style.backgroundColor
+      }
+
+    } // end for loop j
     
-  }
+  } // end for loop i
+
 }
 
 
