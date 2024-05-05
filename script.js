@@ -28,7 +28,7 @@ const swapElements = (chosenArray) => {
   
     elements[chosenArray[1]].style.backgroundColor = tempColor
 
-    findAllMatches()
+    clearMatches(findAllMatches())
 
     chosenElement = [Infinity, Infinity]
   }
@@ -212,11 +212,16 @@ const findAllMatches =() =>{
       }
 
     } // end for loop j
-    
   } // end for loop i
-
+  return elementsToBeCleared
 }
 
+
+const clearMatches = (array) => {
+  for(let i = 0; i<array.length; i++){
+    elements[array[i]].remove()
+  }
+}
 
 
 //event handlers
