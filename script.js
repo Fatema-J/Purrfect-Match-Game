@@ -160,7 +160,7 @@ const findAllMatches =() =>{
   let colTracer = 1
   for(let i = 0; i<steps; i++){
     let rowColor = elements[i*steps].style.backgroundColor
-    let colColor = elements[i*steps].style.backgroundColor
+    let colColor = elements[i].style.backgroundColor
 
     for(let j = 1; j<steps; j++){
       
@@ -193,8 +193,9 @@ const findAllMatches =() =>{
 
         if(j== steps-1){
           if(colTracer >= 3){
-            for(let t = 0 ; t < colTracer; t++){              
-              elementsToBeCleared.push(j*steps+i-(t*steps))
+            for(let t = 0 ; t < colTracer; t++){
+              previousPos = (t)*steps        
+              elementsToBeCleared.push(j*steps+i-previousPos)
             }
             console.log("cells to be cleared: ", elementsToBeCleared);
           }
@@ -202,8 +203,9 @@ const findAllMatches =() =>{
         }
       } else{
         if(colTracer >= 3){
-          for(let t = 0 ; t < colTracer; t++){              
-            elementsToBeCleared.push(j*steps+i-(t*steps))
+          for(let t = 0 ; t < colTracer; t++){
+            previousPos = (t+1)*steps
+            elementsToBeCleared.push(j*steps+i-previousPos)
           }
           console.log("cells to be cleared: ", elementsToBeCleared);
         }
@@ -220,7 +222,15 @@ const findAllMatches =() =>{
 const clearMatches = (array) => {
   for(let i = 0; i<array.length; i++){
     elements[array[i]].remove()
+    console.log(elements[array[i]]);
   }
+  
+  
+  dropElements(array)
+}
+
+const dropElements =(array) =>{
+
 }
 
 
