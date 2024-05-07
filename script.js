@@ -9,7 +9,7 @@ let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
 let pointsTag = document.querySelector("#points")
 let points = 0
-
+let swapped = false
 //Functions
 
 
@@ -36,6 +36,7 @@ const swapElements = (chosenArray) => {
   
     elements[chosenArray[1]].style.backgroundColor = tempColor
 
+    swapped = true
     increasePoints(findAllMatches().length)
 
     clearMatches(findAllMatches())
@@ -284,10 +285,15 @@ const stopMatchesInField = () =>{
   let matchesArray = findAllMatches()
   // check generated field doesn't have any matches
   while(matchesArray.length !== 0){
+    //give points while the player swapped element and it generated new matches
+    if(swapped){
+      increasePoints(findAllMatches().length)
+    }
     console.log('generated field contain matches!!');
     clearMatches(findAllMatches())
     matchesArray = findAllMatches()
   }
+  swapped = false
 }
 
 
