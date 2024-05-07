@@ -2,6 +2,8 @@ body{
   min-height: 100vh;
   min-width: 100vw;
   margin:0;
+  background-image: url(./images/wool.png);
+  background-size: 100% 100%;
 }
 
 section{
@@ -21,7 +23,7 @@ h1{
   grid-template-rows: repeat(5, 20%);
   max-height: 20em; 
   max-width: 20em;
-  gap: 10px;
+  /* gap: 10px; */
   margin:auto;
 
 }
@@ -32,21 +34,23 @@ h1{
   display: flex ;
   align-items: center;
   justify-content: center;
-  background-color: aquamarine;
+  background-color: #F2E8C9;
+  border: 2px solid #F2B544;
   padding: 2em;
   cursor: pointer;
   /* margin: 5%; */
 }
 
 .element-placeholder:hover{
-  background-color: rgb(67, 125, 125);
+  background-color: #c5ba9b;
 }
 
 
 .element{
-  border-radius: 50%;
-  background-color: rgb(44, 60, 55);
-  padding: 1.5em;
+  /* border-radius: 50%; */
+  /* background-color: rgb(44, 60, 55); */
+  width: 3.5rem;
+  /* padding: 1.5em; */
 }
 
 .element:hover{

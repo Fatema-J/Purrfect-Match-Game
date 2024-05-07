@@ -4,7 +4,9 @@ const N = 25
 let elements = document.querySelectorAll('.element')
 let placeHolders = document.querySelectorAll('.element-placeholder')
 //[brownish, brownish, greenish, pale blue, light purple]
-let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
+// let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
+let colors = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
+
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
 let pointsTag = document.querySelector("#points")
@@ -17,7 +19,7 @@ let swapped = false
 
 const generateRandomColors = () => {
   elements.forEach((element) => {
-  element.style.backgroundColor = generateRandomColor()
+  element.setAttribute("src", generateRandomColor()) 
 })
   stopMatchesInField()
 }
@@ -28,12 +30,11 @@ const generateRandomColors = () => {
 const swapElements = (chosenArray) => {
   if(isMatched(chosenArray)){
     
-    let tempColor = elements[chosenArray[0]].style.backgroundColor
+    let tempColor = elements[chosenArray[0]].getAttribute("src")
 
-    elements[chosenArray[0]].style.backgroundColor =
-      elements[chosenArray[1]].style.backgroundColor
+    elements[chosenArray[0]].setAttribute("src", elements[chosenArray[1]].getAttribute("src")) 
   
-    elements[chosenArray[1]].style.backgroundColor = tempColor
+    elements[chosenArray[1]].setAttribute("src", tempColor)
 
     swapped = true
     increasePoints(findAllMatches().length)
@@ -51,8 +52,8 @@ const swapElements = (chosenArray) => {
 const isMatched = (chosenArray) => {
   let i0 = chosenArray[0]
   let i1 = chosenArray[1]
-  let firstColor = elements[i0].style.backgroundColor
-  let secondColor = elements[i1].style.backgroundColor
+  let firstColor = elements[i0].getAttribute("src")
+  let secondColor = elements[i1].getAttribute("src")
 
 
   /** [ 0 , i1, 0]
@@ -141,9 +142,9 @@ const isMatched = (chosenArray) => {
 
 const checkAround = (i1, color, adj1, adj2) =>{
   try {
-    if (color === elements[i1 + adj1].style.backgroundColor) {
+    if (color === elements[i1 + adj1].getAttribute("src")) {
   
-      if (color === elements[i1 + adj2].style.backgroundColor) {
+      if (color === elements[i1 + adj2].getAttribute("src")) {
         return true
       }
     }
@@ -163,13 +164,13 @@ const findAllMatches =() =>{
   let colTracer = 1
   for(let i = 0; i<steps; i++){
     //initial colors
-    let rowColor = elements[i*steps].style.backgroundColor
-    let colColor = elements[i].style.backgroundColor
+    let rowColor = elements[i*steps].getAttribute("src")
+    let colColor = elements[i].getAttribute("src")
 
     for(let j = 1; j<steps; j++){
       
       //horizontally
-      if(elements[i*steps+j].style.backgroundColor === rowColor){
+      if(elements[i*steps+j].getAttribute("src") === rowColor){
         rowTracer++
 
         if(j == steps-1){ //last item in the row
@@ -188,10 +189,10 @@ const findAllMatches =() =>{
           }
         }
         rowTracer = 1
-        rowColor = elements[i*steps+j].style.backgroundColor
+        rowColor = elements[i*steps+j].getAttribute("src")
       }
 
-      if(elements[j*steps+i].style.backgroundColor === colColor){
+      if(elements[j*steps+i].getAttribute("src") === colColor){
         colTracer++
 
         if(j== steps-1){
@@ -211,7 +212,7 @@ const findAllMatches =() =>{
           }
         }
         colTracer = 1
-        colColor = elements[j*steps+i].style.backgroundColor
+        colColor = elements[j*steps+i].getAttribute("src")
       }
 
     } // end for loop j
@@ -235,6 +236,7 @@ const dropElements =(array) =>{
   for(let row = 0; row<steps; row++){
     let emptyCounter = 0
     let firstEmpty = -1
+    
     for(let col = 0; col<steps; col++){
       
       if(isEmpty(col*steps+row)){
@@ -253,22 +255,17 @@ const dropElements =(array) =>{
             shiftElements(firstEmpty, shiftValue)
             dropAnimation(firstEmpty)
           } else{ // no upper elements, generate new colors
-            elements[firstEmpty].style.backgroundColor = generateRandomColor()
+            elements[firstEmpty].setAttribute("src", generateRandomColor())
             elements[firstEmpty].style.opacity = 1
             dropAnimation(firstEmpty)
-
-            
           }
           firstEmpty -= steps
         } //dropping new elements loop
-          
       } // last element condition
     } //col loop
     console.log('------------------');
   } // row loop
-
   stopMatchesInField()
-
 } // function end
 
 
@@ -294,7 +291,7 @@ const stopMatchesInField = () =>{
 }
 
 const shiftElements = (position, shiftValue) => {
-  elements[position].style.backgroundColor = elements[position-shiftValue].style.backgroundColor
+  elements[position].setAttribute("src", elements[position-shiftValue].getAttribute("src"))
   
   elements[position].style.opacity = elements[position-shiftValue].style.opacity
 }
@@ -308,11 +305,9 @@ const generateRandomColor = () =>{
 
 const dropAnimation = (position) =>{
   elements[position].classList.add("animate__animated", "animate__slideInDown")
-            elements[position].addEventListener('animationend', () => {
-              console.log('here removing');
-              
-              elements[position].classList.remove("animate__animated", "animate__slideInDown")
-            });
+  elements[position].addEventListener('animationend', () => {
+    elements[position].classList.remove("animate__animated", "animate__slideInDown")
+  });
 }
 
 
