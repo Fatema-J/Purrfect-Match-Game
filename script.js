@@ -5,7 +5,7 @@ let elements = document.querySelectorAll('.element')
 let placeHolders = document.querySelectorAll('.element-placeholder')
 //[brownish, brownish, greenish, pale blue, light purple]
 // let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
-let colors = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
+let images = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
 
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
@@ -17,9 +17,9 @@ let swapped = false
 
 // Randomly color the elements
 
-const generateRandomColors = () => {
+const generateRandomImages = () => {
   elements.forEach((element) => {
-  element.setAttribute("src", generateRandomColor()) 
+  element.setAttribute("src", generateRandomImage()) 
 })
   stopMatchesInField()
 }
@@ -30,11 +30,11 @@ const generateRandomColors = () => {
 const swapElements = (chosenArray) => {
   if(isMatched(chosenArray)){
     
-    let tempColor = elements[chosenArray[0]].getAttribute("src")
+    let tempImage = elements[chosenArray[0]].getAttribute("src")
 
     elements[chosenArray[0]].setAttribute("src", elements[chosenArray[1]].getAttribute("src")) 
   
-    elements[chosenArray[1]].setAttribute("src", tempColor)
+    elements[chosenArray[1]].setAttribute("src", tempImage)
 
     swapped = true
     increasePoints(findAllMatches().length)
@@ -52,8 +52,8 @@ const swapElements = (chosenArray) => {
 const isMatched = (chosenArray) => {
   let i0 = chosenArray[0]
   let i1 = chosenArray[1]
-  let firstColor = elements[i0].getAttribute("src")
-  let secondColor = elements[i1].getAttribute("src")
+  let firstImage = elements[i0].getAttribute("src")
+  let secondImage = elements[i1].getAttribute("src")
 
 
   /** [ 0 , i1, 0]
@@ -62,16 +62,16 @@ const isMatched = (chosenArray) => {
    * check right , left, up, between horizontal
   */
   if(i0 == i1+steps){ 
-    if(checkAround(i1, firstColor, 1, 2) ||
-    checkAround(i1, firstColor, -1, -2) ||
-    checkAround(i1, firstColor, -steps, -steps*2) ||
-    checkAround(i1, firstColor, -1, 1) ){
+    if(checkAround(i1, firstImage, 1, 2) ||
+    checkAround(i1, firstImage, -1, -2) ||
+    checkAround(i1, firstImage, -steps, -steps*2) ||
+    checkAround(i1, firstImage, -1, 1) ){
       return true
     }
-    if(checkAround(i0, secondColor, 1, 2) ||
-    checkAround(i0, secondColor, -1, -2) ||
-    checkAround(i0, secondColor, steps, steps*2) ||
-    checkAround(i0, secondColor, -1, 1) ){
+    if(checkAround(i0, secondImage, 1, 2) ||
+    checkAround(i0, secondImage, -1, -2) ||
+    checkAround(i0, secondImage, steps, steps*2) ||
+    checkAround(i0, secondImage, -1, 1) ){
       return true
     }
   }
@@ -82,16 +82,16 @@ const isMatched = (chosenArray) => {
    * check left, up, down, between vertical
   */  
   if(i0 == i1+1){
-    if( checkAround(i1, firstColor, -1, -2) ||
-    checkAround(i1, firstColor, -steps, -steps*2) ||
-    checkAround(i1, firstColor, steps, steps*2) || 
-    checkAround(i1, firstColor, -steps, steps)){
+    if( checkAround(i1, firstImage, -1, -2) ||
+    checkAround(i1, firstImage, -steps, -steps*2) ||
+    checkAround(i1, firstImage, steps, steps*2) || 
+    checkAround(i1, firstImage, -steps, steps)){
       return true
     }
-    if( checkAround(i0, secondColor, 1, 2) ||
-    checkAround(i0, secondColor, -steps, -steps*2) ||
-    checkAround(i0, secondColor, steps, steps*2) || 
-    checkAround(i0, secondColor, -steps, steps)){
+    if( checkAround(i0, secondImage, 1, 2) ||
+    checkAround(i0, secondImage, -steps, -steps*2) ||
+    checkAround(i0, secondImage, steps, steps*2) || 
+    checkAround(i0, secondImage, -steps, steps)){
       return true
     }
   }
@@ -102,16 +102,16 @@ const isMatched = (chosenArray) => {
    * check right , left, down, between horizontal
   */
   if(i1 == i0+steps){ 
-    if(checkAround(i1, firstColor, 1, 2) ||
-    checkAround(i1, firstColor, -1, -2) ||
-    checkAround(i1, firstColor, steps, steps*2) ||
-    checkAround(i1, firstColor, -1, 1) ){
+    if(checkAround(i1, firstImage, 1, 2) ||
+    checkAround(i1, firstImage, -1, -2) ||
+    checkAround(i1, firstImage, steps, steps*2) ||
+    checkAround(i1, firstImage, -1, 1) ){
       return true
     }
-    if(checkAround(i0, secondColor, 1, 2) ||
-    checkAround(i0, secondColor, -1, -2) ||
-    checkAround(i0, secondColor, -steps, -steps*2) ||
-    checkAround(i0, secondColor, -1, 1) ){
+    if(checkAround(i0, secondImage, 1, 2) ||
+    checkAround(i0, secondImage, -1, -2) ||
+    checkAround(i0, secondImage, -steps, -steps*2) ||
+    checkAround(i0, secondImage, -1, 1) ){
       return true
     }
   }
@@ -122,16 +122,16 @@ const isMatched = (chosenArray) => {
    * check right, up, down, between vertical
   */  
   if(i1 == i0+1){
-    if( checkAround(i1, firstColor, 1, 2) ||
-    checkAround(i1, firstColor, -steps, -steps*2) ||
-    checkAround(i1, firstColor, steps, steps*2) || 
-    checkAround(i1, firstColor, -steps, steps)){
+    if( checkAround(i1, firstImage, 1, 2) ||
+    checkAround(i1, firstImage, -steps, -steps*2) ||
+    checkAround(i1, firstImage, steps, steps*2) || 
+    checkAround(i1, firstImage, -steps, steps)){
       return true
     }
-    if( checkAround(i0, secondColor, -1, -2) ||
-    checkAround(i0, secondColor, -steps, -steps*2) ||
-    checkAround(i0, secondColor, steps, steps*2) || 
-    checkAround(i0, secondColor, -steps, steps)){
+    if( checkAround(i0, secondImage, -1, -2) ||
+    checkAround(i0, secondImage, -steps, -steps*2) ||
+    checkAround(i0, secondImage, steps, steps*2) || 
+    checkAround(i0, secondImage, -steps, steps)){
       return true
     }
   }
@@ -140,11 +140,11 @@ const isMatched = (chosenArray) => {
   return false
 }
 
-const checkAround = (i1, color, adj1, adj2) =>{
+const checkAround = (i1, image, adj1, adj2) =>{
   try {
-    if (color === elements[i1 + adj1].getAttribute("src")) {
+    if (image === elements[i1 + adj1].getAttribute("src")) {
   
-      if (color === elements[i1 + adj2].getAttribute("src")) {
+      if (image === elements[i1 + adj2].getAttribute("src")) {
         return true
       }
     }
@@ -164,13 +164,13 @@ const findAllMatches =() =>{
   let colTracer = 1
   for(let i = 0; i<steps; i++){
     //initial colors
-    let rowColor = elements[i*steps].getAttribute("src")
-    let colColor = elements[i].getAttribute("src")
+    let rowImage = elements[i*steps].getAttribute("src")
+    let colImage = elements[i].getAttribute("src")
 
     for(let j = 1; j<steps; j++){
       
       //horizontally
-      if(elements[i*steps+j].getAttribute("src") === rowColor){
+      if(elements[i*steps+j].getAttribute("src") === rowImage){
         rowTracer++
 
         if(j == steps-1){ //last item in the row
@@ -189,10 +189,10 @@ const findAllMatches =() =>{
           }
         }
         rowTracer = 1
-        rowColor = elements[i*steps+j].getAttribute("src")
+        rowImage = elements[i*steps+j].getAttribute("src")
       }
 
-      if(elements[j*steps+i].getAttribute("src") === colColor){
+      if(elements[j*steps+i].getAttribute("src") === colImage){
         colTracer++
 
         if(j== steps-1){
@@ -212,7 +212,7 @@ const findAllMatches =() =>{
           }
         }
         colTracer = 1
-        colColor = elements[j*steps+i].getAttribute("src")
+        colImage = elements[j*steps+i].getAttribute("src")
       }
 
     } // end for loop j
@@ -255,7 +255,7 @@ const dropElements =(array) =>{
             shiftElements(firstEmpty, shiftValue)
             dropAnimation(firstEmpty)
           } else{ // no upper elements, generate new colors
-            elements[firstEmpty].setAttribute("src", generateRandomColor())
+            elements[firstEmpty].setAttribute("src", generateRandomImage())
             elements[firstEmpty].style.opacity = 1
             dropAnimation(firstEmpty)
           }
@@ -297,9 +297,9 @@ const shiftElements = (position, shiftValue) => {
 }
 
 
-const generateRandomColor = () =>{
-  let randomInt = Math.floor(Math.random() * colors.length)
-  return colors[randomInt]
+const generateRandomImage = () =>{
+  let randomInt = Math.floor(Math.random() * images.length)
+  return images[randomInt]
 }
 
 
@@ -319,7 +319,7 @@ const increasePoints = (matchedElementsCount) => {
 
 //event handlers
 
-generateRandomColors()
+generateRandomImages()
 
 elements.forEach((element, index) => {
   element.addEventListener('click', () => {
