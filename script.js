@@ -263,7 +263,6 @@ const dropElements =(array) =>{
             let randomInt = Math.floor(Math.random() * colors.length)
             elements[firstEmpty].style.backgroundColor = colors[randomInt]
             elements[firstEmpty].style.opacity = 1
-            console.log('generated this color',  elements[firstEmpty].style.backgroundColor);
           }
           firstEmpty -= steps
         } //dropping new elements loop
@@ -272,6 +271,17 @@ const dropElements =(array) =>{
     } //col loop
     console.log('------------------');
   } // row loop
+
+  let matchesArray = findAllMatches()
+  let i = 0
+  // check generated field doesn't have any matches
+  while(matchesArray.length !== 0){
+    console.log('generated field contain matches!!');
+    
+    clearMatches(findAllMatches())
+    matchesArray = findAllMatches()
+  }
+
 } // function end
 
 const isEmpty = (position) =>{
