@@ -144,16 +144,10 @@ const isMatched = (chosenArray) => {
 }
 
 const checkAround = (i1, color, adj1, adj2) =>{
-  console.log("direction1:",adj1)
-  console.log("direction2:",adj2)
   try {
     if (color === elements[i1 + adj1].style.backgroundColor) {
-      console.log("adj1", elements[i1 + adj1].style.backgroundColor)
-      console.log('1st adjacent match')
   
       if (color === elements[i1 + adj2].style.backgroundColor) {
-        console.log("adj2", elements[i1 + adj2].style.backgroundColor)
-        console.log('2nd adjacent match')
         return true
       }
     }
@@ -272,17 +266,13 @@ const dropElements =(array) =>{
             console.log('generated this color',  elements[firstEmpty].style.backgroundColor);
           }
           firstEmpty -= steps
-        }
+        } //dropping new elements loop
           
-      }
-    }
-
+      } // last element condition
+    } //col loop
     console.log('------------------');
-    
-  }
-
-
-}
+  } // row loop
+} // function end
 
 const isEmpty = (position) =>{
   return elements[position].style.opacity === "0"
