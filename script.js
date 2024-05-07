@@ -7,6 +7,8 @@ let placeHolders = document.querySelectorAll('.element-placeholder')
 let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
+let pointsTag = document.querySelector("#points")
+let points = 0
 
 //Functions
 
@@ -18,15 +20,7 @@ const generateRandomColors = () => {
   let randomInt = Math.floor(Math.random() * colors.length)
   element.style.backgroundColor = colors[randomInt]
 })
-
-
-  let matchesArray = findAllMatches()
-  let i = 0
-  // the initial field doesn't have any matches
-  while(matchesArray.length !== 0){
-    clearMatches(findAllMatches())
-    matchesArray = findAllMatches()
-  }
+  stopMatchesInField()
 }
 
 
@@ -41,6 +35,8 @@ const swapElements = (chosenArray) => {
       elements[chosenArray[1]].style.backgroundColor
   
     elements[chosenArray[1]].style.backgroundColor = tempColor
+
+    increasePoints(findAllMatches().length)
 
     clearMatches(findAllMatches())
 
@@ -166,6 +162,7 @@ const findAllMatches =() =>{
   let rowTracer = 1
   let colTracer = 1
   for(let i = 0; i<steps; i++){
+    //initial colors
     let rowColor = elements[i*steps].style.backgroundColor
     let colColor = elements[i].style.backgroundColor
 
@@ -177,16 +174,17 @@ const findAllMatches =() =>{
 
         if(j == steps-1){ //last item in the row
           if (rowTracer >= 3){
-            for(let t = 0 ; t < rowTracer; t++){              
-              elementsToBeCleared.push(i*steps+j-t)
+            for(let previous = 0 ; previous < rowTracer; previous++){
+              // indicate the previous matching cells
+              elementsToBeCleared.push(i*steps+j-previous)
             }
           }
           rowTracer = 1
         }
       } else{
         if (rowTracer >= 3){
-          for(let t = 0 ; t < rowTracer; t++){
-            elementsToBeCleared.push(i*steps+j-t-1)
+          for(let previous = 0 ; previous < rowTracer; previous++){
+            elementsToBeCleared.push(i*steps+j-previous-1)
           }
         }
         rowTracer = 1
@@ -211,7 +209,6 @@ const findAllMatches =() =>{
             previousPos = (t+1)*steps
             elementsToBeCleared.push(j*steps+i-previousPos)
           }
-          
         }
         colTracer = 1
         colColor = elements[j*steps+i].style.backgroundColor
@@ -227,7 +224,6 @@ const findAllMatches =() =>{
 const clearMatches = (array) => {
   for(let i = 0; i<array.length; i++){
     elements[array[i]].style.opacity = 0
-    console.log(elements[array[i]]);
   }
   dropElements(array)
 }
@@ -252,12 +248,13 @@ const dropElements =(array) =>{
           if(firstEmpty<0){
             break
           }
-          if(firstEmpty-emptyCounter*steps >= 0){ // there is upper element
+          let shiftValue = emptyCounter*steps
+          if(firstEmpty-shiftValue >= 0){ // there is upper element
             console.log('the upper element is', firstEmpty-emptyCounter*steps);
             
-            elements[firstEmpty].style.backgroundColor = elements[firstEmpty-emptyCounter*steps].style.backgroundColor
+            elements[firstEmpty].style.backgroundColor = elements[firstEmpty-shiftValue].style.backgroundColor
 
-            elements[firstEmpty].style.opacity = elements[firstEmpty-emptyCounter*steps].style.opacity
+            elements[firstEmpty].style.opacity = elements[firstEmpty-shiftValue].style.opacity
 
           } else{ // no upper elements, generate new colors
             let randomInt = Math.floor(Math.random() * colors.length)
@@ -272,22 +269,32 @@ const dropElements =(array) =>{
     console.log('------------------');
   } // row loop
 
-  let matchesArray = findAllMatches()
-  let i = 0
-  // check generated field doesn't have any matches
-  while(matchesArray.length !== 0){
-    console.log('generated field contain matches!!');
-    
-    clearMatches(findAllMatches())
-    matchesArray = findAllMatches()
-  }
+  stopMatchesInField()
 
 } // function end
+
 
 const isEmpty = (position) =>{
   return elements[position].style.opacity === "0"
 }
 
+
+const stopMatchesInField = () =>{
+
+  let matchesArray = findAllMatches()
+  // check generated field doesn't have any matches
+  while(matchesArray.length !== 0){
+    console.log('generated field contain matches!!');
+    clearMatches(findAllMatches())
+    matchesArray = findAllMatches()
+  }
+}
+
+
+const increasePoints = (matchedElementsCount) => {
+  points += 10*matchedElementsCount
+  pointsTag.innerHTML = points
+}
 
 //event handlers
 
