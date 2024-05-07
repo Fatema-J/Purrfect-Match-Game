@@ -34,6 +34,7 @@ h1{
   justify-content: center;
   background-color: aquamarine;
   padding: 2em;
+  cursor: pointer;
   /* margin: 5%; */
 }
 
@@ -41,13 +42,21 @@ h1{
   background-color: rgb(67, 125, 125);
 }
 
+
 .element{
   border-radius: 50%;
   background-color: rgb(44, 60, 55);
   padding: 1.5em;
 }
 
+.element:hover{
+  transform: scale(1.1);
+}
+
 #clear{
   background-color: rgba(44, 60, 55, 0);
 }
 
+.animate__animated.animate__slideInDown{
+  --animate-duration: 800ms;
+}

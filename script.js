@@ -17,8 +17,7 @@ let swapped = false
 
 const generateRandomColors = () => {
   elements.forEach((element) => {
-  let randomInt = Math.floor(Math.random() * colors.length)
-  element.style.backgroundColor = colors[randomInt]
+  element.style.backgroundColor = generateRandomColor()
 })
   stopMatchesInField()
 }
@@ -251,16 +250,14 @@ const dropElements =(array) =>{
           }
           let shiftValue = emptyCounter*steps
           if(firstEmpty-shiftValue >= 0){ // there is upper element
-            console.log('the upper element is', firstEmpty-emptyCounter*steps);
-            
-            elements[firstEmpty].style.backgroundColor = elements[firstEmpty-shiftValue].style.backgroundColor
-
-            elements[firstEmpty].style.opacity = elements[firstEmpty-shiftValue].style.opacity
-
+            shiftElements(firstEmpty, shiftValue)
+            dropAnimation(firstEmpty)
           } else{ // no upper elements, generate new colors
-            let randomInt = Math.floor(Math.random() * colors.length)
-            elements[firstEmpty].style.backgroundColor = colors[randomInt]
+            elements[firstEmpty].style.backgroundColor = generateRandomColor()
             elements[firstEmpty].style.opacity = 1
+            dropAnimation(firstEmpty)
+
+            
           }
           firstEmpty -= steps
         } //dropping new elements loop
@@ -295,6 +292,29 @@ const stopMatchesInField = () =>{
   }
   swapped = false
 }
+
+const shiftElements = (position, shiftValue) => {
+  elements[position].style.backgroundColor = elements[position-shiftValue].style.backgroundColor
+  
+  elements[position].style.opacity = elements[position-shiftValue].style.opacity
+}
+
+
+const generateRandomColor = () =>{
+  let randomInt = Math.floor(Math.random() * colors.length)
+  return colors[randomInt]
+}
+
+
+const dropAnimation = (position) =>{
+  elements[position].classList.add("animate__animated", "animate__slideInDown")
+            elements[position].addEventListener('animationend', () => {
+              console.log('here removing');
+              
+              elements[position].classList.remove("animate__animated", "animate__slideInDown")
+            });
+}
+
 
 
 const increasePoints = (matchedElementsCount) => {
