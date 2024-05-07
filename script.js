@@ -2,6 +2,7 @@
 let gameboard = document.querySelector('.gameboard')
 const N = 25
 let elements = document.querySelectorAll('.element')
+let placeHolders = document.querySelectorAll('.element-placeholder')
 //[brownish, brownish, greenish, pale blue, light purple]
 let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
 let chosenElement = [Infinity, Infinity]
@@ -12,7 +13,7 @@ let steps = Math.sqrt(elements.length)
 
 // Randomly color the elements
 elements.forEach((element) => {
-  let randomInt = Math.floor(Math.random() * 5)
+  let randomInt = Math.floor(Math.random() * colors.length)
   element.style.backgroundColor = colors[randomInt]
 })
 
@@ -221,7 +222,7 @@ const findAllMatches =() =>{
 
 const clearMatches = (array) => {
   for(let i = 0; i<array.length; i++){
-    elements[array[i]].remove()
+    elements[array[i]].style.opacity = 0
     console.log(elements[array[i]]);
   }
   
@@ -229,8 +230,57 @@ const clearMatches = (array) => {
   dropElements(array)
 }
 
+
+
 const dropElements =(array) =>{
 
+
+  for(let row = 0; row<steps; row++){
+    let emptyCounter = 0
+    let firstEmpty = -1
+    for(let col = 0; col<steps; col++){
+      
+      if(isEmpty(col*steps+row)){
+        firstEmpty = col*steps+row //to know the first empty element on the column
+        emptyCounter++
+      }
+      
+      if(col === steps-1){ //last element
+        //start shifting
+
+        for(let i = 0 ; i< steps; i++){
+          console.log('firstEmpty', firstEmpty);
+          if(firstEmpty<0){
+            break
+          }
+          if(firstEmpty-emptyCounter*steps >= 0){ // there is upper element
+            console.log('the upper element is', firstEmpty-emptyCounter*steps);
+            
+            elements[firstEmpty].style.backgroundColor = elements[firstEmpty-emptyCounter*steps].style.backgroundColor
+
+            elements[firstEmpty].style.opacity = elements[firstEmpty-emptyCounter*steps].style.opacity
+
+          } else{ // no upper elements, generate new colors
+            let randomInt = Math.floor(Math.random() * colors.length)
+            elements[firstEmpty].style.backgroundColor = colors[randomInt]
+            elements[firstEmpty].style.opacity = 1
+            console.log('generated this color',  elements[firstEmpty].style.backgroundColor);
+          }
+          firstEmpty -= steps
+        }
+          
+      }
+    }
+
+    console.log('------------------');
+    
+  }
+
+
+}
+
+const isEmpty = (position) =>{
+  return elements[position].style.opacity === "0"
 }
 
 
