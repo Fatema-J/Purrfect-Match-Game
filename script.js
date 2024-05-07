@@ -12,10 +12,23 @@ let steps = Math.sqrt(elements.length)
 
 
 // Randomly color the elements
-elements.forEach((element) => {
+
+const generateRandomColors = () => {
+  elements.forEach((element) => {
   let randomInt = Math.floor(Math.random() * colors.length)
   element.style.backgroundColor = colors[randomInt]
 })
+
+
+  let matchesArray = findAllMatches()
+  let i = 0
+  // the initial field doesn't have any matches
+  while(matchesArray.length !== 0){
+    clearMatches(findAllMatches())
+    matchesArray = findAllMatches()
+  }
+}
+
 
 
 
@@ -153,8 +166,7 @@ const checkAround = (i1, color, adj1, adj2) =>{
 }
 
 const findAllMatches =() =>{
-  console.log('here find all matched');
-  elements = document.querySelectorAll('.element')
+  elements = document.querySelectorAll('.element') //update elements
 
   let elementsToBeCleared = []
   let rowTracer = 1
@@ -174,7 +186,6 @@ const findAllMatches =() =>{
             for(let t = 0 ; t < rowTracer; t++){              
               elementsToBeCleared.push(i*steps+j-t)
             }
-            console.log("cells to be cleared: ", elementsToBeCleared);
           }
           rowTracer = 1
         }
@@ -183,7 +194,6 @@ const findAllMatches =() =>{
           for(let t = 0 ; t < rowTracer; t++){
             elementsToBeCleared.push(i*steps+j-t-1)
           }
-          console.log("cells to be cleared: ", elementsToBeCleared);
         }
         rowTracer = 1
         rowColor = elements[i*steps+j].style.backgroundColor
@@ -198,7 +208,6 @@ const findAllMatches =() =>{
               previousPos = (t)*steps        
               elementsToBeCleared.push(j*steps+i-previousPos)
             }
-            console.log("cells to be cleared: ", elementsToBeCleared);
           }
           colTracer = 1
         }
@@ -208,7 +217,7 @@ const findAllMatches =() =>{
             previousPos = (t+1)*steps
             elementsToBeCleared.push(j*steps+i-previousPos)
           }
-          console.log("cells to be cleared: ", elementsToBeCleared);
+          
         }
         colTracer = 1
         colColor = elements[j*steps+i].style.backgroundColor
@@ -216,6 +225,7 @@ const findAllMatches =() =>{
 
     } // end for loop j
   } // end for loop i
+  console.log("cells to be cleared: ", elementsToBeCleared);
   return elementsToBeCleared
 }
 
@@ -225,15 +235,12 @@ const clearMatches = (array) => {
     elements[array[i]].style.opacity = 0
     console.log(elements[array[i]]);
   }
-  
-  
   dropElements(array)
 }
 
 
-
+/* shifts existing elements to down and generate new ones*/ 
 const dropElements =(array) =>{
-
 
   for(let row = 0; row<steps; row++){
     let emptyCounter = 0
@@ -247,9 +254,7 @@ const dropElements =(array) =>{
       
       if(col === steps-1){ //last element
         //start shifting
-
         for(let i = 0 ; i< steps; i++){
-          console.log('firstEmpty', firstEmpty);
           if(firstEmpty<0){
             break
           }
@@ -285,6 +290,9 @@ const isEmpty = (position) =>{
 
 
 //event handlers
+
+generateRandomColors()
+
 elements.forEach((element, index) => {
   element.addEventListener('click', () => {
     if (chosenElement[0] === Infinity) {
