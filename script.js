@@ -8,11 +8,14 @@ let placeHolders = document.querySelectorAll('.element-placeholder')
 let images = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
 let replay = document.querySelector("#replay")
 let pause = document.querySelector("#pause")
+let container = document.querySelector(".container")
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
 let pointsTag = document.querySelector("#points")
 let highestPointsTag = document.querySelector("#highest-points")
 let gameOverPopUp = document.querySelector(".game-over")
+let pausePopUp = document.querySelector('.pause')
+let continueBtn = document.querySelector("#continue") 
 let highestPoints = 0
 let timerTag = document.querySelector("#timer")
 let timer
@@ -20,6 +23,7 @@ const seconds = 10
 let timeLeft = seconds
 let points = 0
 let swapped = false
+let paused = false
 //Functions
 
 
@@ -27,6 +31,8 @@ let swapped = false
 
 const startGame = ()=>{
   generateRandomImages()
+  container.style.pointerEvents = "auto"
+  gameOverPopUp.style.display = "none"
   startTimer()
 }
 
@@ -338,22 +344,39 @@ const replayGame = () =>{
 
 
 const runTimer = () =>{
-  timeLeft--
-  if(timeLeft >= 0){
-    timerTag.innerHTML = timeLeft
-  } else{
-    gameOver()
+  if(!paused){
+    timeLeft--
+    if(timeLeft >= 0){
+      timerTag.innerHTML = timeLeft
+    } else{
+      gameOver()
+    }
   }
+  
 }
 
 
 const gameOver = () => {
   gameOverPopUp.style.display = "block"
+  container.style.pointerEvents = "none"
 }
 
 
 const startTimer = () =>{
   timer = setInterval(runTimer, 1000);
+}
+
+
+const pauseGame = () =>{
+  paused = true
+  pausePopUp.style.display = "block"
+  container.style.pointerEvents = "none"
+}
+
+const continueGame = () =>{
+  paused = false
+  pausePopUp.style.display = "none"
+  container.style.pointerEvents = "auto"
 }
 
 
@@ -373,3 +396,7 @@ elements.forEach((element, index) => {
 })
 
 replay.addEventListener(('click'), replayGame)
+
+pause.addEventListener(('click'), pauseGame)
+
+continueBtn.addEventListener(('click'), continueGame)

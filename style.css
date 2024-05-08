@@ -122,17 +122,39 @@ h1{
 
 .game-over{
   display:none;
+}
+
+.pause{
+  display:none;
+}
+
+.game-over, .pause{
+  justify-content: space-around;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.pop-up{
-  font-size: 1.5em;
   background-color: #F2E8C9;
   border: 10px solid #F26A1B;
+  border-radius: 30%;
+  padding: 5%;
+  /* font-size: 1.5em; */
   text-align: center;
+}
 
+a{
+  text-decoration: none;
+}
 
+.index-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.play-btn{
+  background-color: #F2E8C9;
+  border: 1px solid #F26A1B;
+  border-radius: 20px;
+  padding: 2% 5%;
 }

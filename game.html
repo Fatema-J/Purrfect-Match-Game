@@ -7,18 +7,41 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
+<link rel="icon" href="./images/cat4.png">
   <script defer src="script.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Iris Game</title>
 </head>
 <body>
-  <div class="container">
 
-    <section class="game-over">
-      <div class="pop-up">
-        Game Over
-      </div>
-    </section>
+  <section class="game-over">
+    <div>
+      <div>Game Over</div>
+    </div>
+    <div>Score</div>
+    <div class="score">00</div>
+    <div>
+      <a class="control" id="home" href="./index.html">
+        <img class = "control-image" src="./images/home_icon.png" alt=""></a>
+      <button class="control" id="replay">
+        <img class = "control-image" src="./images/replay_icon.png" alt=""></button>
+    </div>
+  </section>
+
+  <section class="pause">
+    <div>
+      <div>Pause</div>
+    </div>
+    <div>Score</div>
+    <div class="score">00</div>
+    <div>
+      <button class="control" id="continue">
+        <img class = "control-image" src="./images/continue_icon.png" alt=""></button>
+    </div>
+  </section>
+
+
+  <div class="container">
 
     <section class="side-items-container">
       <div class="side">
