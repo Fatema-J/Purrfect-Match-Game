@@ -31,11 +31,11 @@ Welcome to the exciting world of our match-3 puzzle game! In this colorful and a
 
 
 - [ ] Dark Mode
-- [ ] Make customized branding for the game (logo, colors, fonts)
+- [x] Make customized branding for the game (logo, colors, fonts)
 - [ ] Add sounds for every move
-- [ ] Pause button
+- [x] Pause button
 - [ ] Drag instead of choosing
-- [ ] Timer
+- [x] Timer
 
 
 

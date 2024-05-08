@@ -8,6 +8,7 @@ let placeHolders = document.querySelectorAll('.element-placeholder')
 let images = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
 let replay = document.querySelectorAll("#replay")
 let pause = document.querySelector("#pause")
+let score = document.querySelectorAll(".score")
 let container = document.querySelector(".container")
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
@@ -335,6 +336,9 @@ const noMatchAnimation = (position) =>{
 
 const increasePoints = (matchedElementsCount) => {
   points += 10*matchedElementsCount
+  score.forEach((scoreElement) =>{
+    scoreElement.innerHTML = points
+  })
   pointsTag.innerHTML = points
   if(points>highestPoints){
     highestPointsTag.innerHTML = points
@@ -407,7 +411,6 @@ elements.forEach((element, index) => {
 replay.forEach((btn) => {
   btn.addEventListener(('click'), replayGame)
 })
-
 
 pause.addEventListener(('click'), pauseGame)
 
