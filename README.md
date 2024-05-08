@@ -1,4 +1,4 @@
-# Iris Game 🌈
+# Purrfect Match Game 🌈
 
 ## Description
 
@@ -41,4 +41,4 @@ Welcome to the exciting world of our match-3 puzzle game! In this colorful and a
 
 ## Credits
 
-The concept for **Iris Game** was inspired by Candy Crush Saga.
+The concept for **Purrfect Match Game** was inspired by Candy Crush Saga.

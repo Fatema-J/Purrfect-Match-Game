@@ -6,7 +6,7 @@ let placeHolders = document.querySelectorAll('.element-placeholder')
 //[brownish, brownish, greenish, pale blue, light purple]
 // let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
 let images = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
-let replay = document.querySelector("#replay")
+let replay = document.querySelectorAll("#replay")
 let pause = document.querySelector("#pause")
 let container = document.querySelector(".container")
 let chosenElement = [Infinity, Infinity]
@@ -19,7 +19,7 @@ let continueBtn = document.querySelector("#continue")
 let highestPoints = 0
 let timerTag = document.querySelector("#timer")
 let timer
-const seconds = 10
+const seconds = 30
 let timeLeft = seconds
 let points = 0
 let swapped = false
@@ -338,8 +338,8 @@ const replayGame = () =>{
   points = 0
   pointsTag.innerHTML = points
   timeLeft = seconds
+  clearInterval(timer)
   startGame()
-  //TODO: restart the timer
 }
 
 
@@ -359,6 +359,7 @@ const runTimer = () =>{
 const gameOver = () => {
   gameOverPopUp.style.display = "block"
   container.style.pointerEvents = "none"
+  clearInterval(timer)
 }
 
 
@@ -395,7 +396,10 @@ elements.forEach((element, index) => {
   })
 })
 
-replay.addEventListener(('click'), replayGame)
+replay.forEach((btn) => {
+  btn.addEventListener(('click'), replayGame)
+})
+
 
 pause.addEventListener(('click'), pauseGame)
 
