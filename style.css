@@ -6,12 +6,6 @@ body{
   background-size: 100% 100%;
 }
 
-section{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-}
 
 h1{
   text-align:center;
@@ -63,4 +57,57 @@ h1{
 
 .animate__animated.animate__slideInDown{
   --animate-duration: 800ms;
+}
+
+.container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: end;
+  height: 100vh;
+  padding-bottom: 20%;
+}
+
+.side{
+  background-color: #F2E8C9;
+  width: 70%;
+  height: 30%;
+  border-radius: 30%;
+  display:flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.side-items-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70%;
+  width: 1fr;
+  font-size: 0.8em;
+}
+
+.control-container{
+  display:flex;
+  flex-direction: column;
+  align-self: flex-end;
+  /* height: 70%; */
+}
+
+.game {
+  width: 3fr;
+}
+
+.control{
+  padding:0;
+  border:0 ;
+  width: 1fr;
+  background: none;
+}
+
+.control-image{
+  max-height:5em;
+  width: auto;
 }

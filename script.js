@@ -10,6 +10,9 @@ let images = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
 let pointsTag = document.querySelector("#points")
+let highestPointsTag = document.querySelector("#highest-points")
+let highestPoints = 0
+let timer = document.querySelector("#timer")
 let points = 0
 let swapped = false
 //Functions
@@ -135,8 +138,6 @@ const isMatched = (chosenArray) => {
       return true
     }
   }
-
-  console.log('no match: up, down, left or right')
   return false
 }
 
@@ -150,7 +151,6 @@ const checkAround = (i1, image, adj1, adj2) =>{
     }
     return false
   } catch (error) {
-    console.log("undefined")
     return false
   }
   
@@ -217,7 +217,6 @@ const findAllMatches =() =>{
 
     } // end for loop j
   } // end for loop i
-  console.log("cells to be cleared: ", elementsToBeCleared);
   return elementsToBeCleared
 }
 
@@ -263,7 +262,6 @@ const dropElements =(array) =>{
         } //dropping new elements loop
       } // last element condition
     } //col loop
-    console.log('------------------');
   } // row loop
   stopMatchesInField()
 } // function end
@@ -283,7 +281,6 @@ const stopMatchesInField = () =>{
     if(swapped){
       increasePoints(findAllMatches().length)
     }
-    console.log('generated field contain matches!!');
     clearMatches(findAllMatches())
     matchesArray = findAllMatches()
   }
@@ -315,6 +312,9 @@ const dropAnimation = (position) =>{
 const increasePoints = (matchedElementsCount) => {
   points += 10*matchedElementsCount
   pointsTag.innerHTML = points
+  if(points>highestPoints){
+    highestPointsTag.innerHTML = points
+  }
 }
 
 //event handlers
