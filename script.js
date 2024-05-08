@@ -6,7 +6,8 @@ let placeHolders = document.querySelectorAll('.element-placeholder')
 //[brownish, brownish, greenish, pale blue, light purple]
 // let colors = ['#E8CCBF', '#a9cfa5', '#81968F', '#96BDC6', '#E9D6EC']
 let images = ['./images/cat1.png', './images/cat2.png', './images/cat3.png', './images/cat4.png', './images/cat5.png']
-
+let replay = document.querySelector("#replay")
+let pause = document.querySelector("#pause")
 let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
 let pointsTag = document.querySelector("#points")
@@ -317,6 +318,13 @@ const increasePoints = (matchedElementsCount) => {
   }
 }
 
+
+const replayGame = () =>{
+  generateRandomImages()
+  points = 0
+  pointsTag.innerHTML = points
+}
+
 //event handlers
 
 generateRandomImages()
@@ -331,3 +339,5 @@ elements.forEach((element, index) => {
     }
   })
 })
+
+replay.addEventListener(('click'), replayGame)

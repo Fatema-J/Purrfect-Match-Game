@@ -107,6 +107,11 @@ h1{
   background: none;
 }
 
+.control:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .control-image{
   max-height:5em;
   width: auto;
