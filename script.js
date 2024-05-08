@@ -62,9 +62,11 @@ const swapElements = (chosenArray) => {
     clearMatches(findAllMatches())
 
     chosenElement = [Infinity, Infinity]
+  } else{
+    noMatchAnimation(chosenArray[0])
+    noMatchAnimation(chosenArray[1])
   }
-  noMatchAnimation(chosenArray[0])
-  noMatchAnimation(chosenArray[1])
+  
   chosenElement = [Infinity, Infinity]
 }
 

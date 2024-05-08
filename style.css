@@ -3,12 +3,18 @@ body{
   min-width: 100vw;
   margin:0;
   background-image: url(./images/wool.png);
-  background-size: 100% 100%;
+  background-size: cover;
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 
 h1{
   text-align:center;
+  font-family: "Concert One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .gameboard{
@@ -17,7 +23,6 @@ h1{
   grid-template-rows: repeat(5, 20%);
   max-height: 20em; 
   max-width: 20em;
-  /* gap: 10px; */
   margin:auto;
 
 }
@@ -32,7 +37,6 @@ h1{
   border: 2px solid #F2B544;
   padding: 2em;
   cursor: pointer;
-  /* margin: 5%; */
 }
 
 .element-placeholder:hover{
@@ -41,10 +45,7 @@ h1{
 
 
 .element{
-  /* border-radius: 50%; */
-  /* background-color: rgb(44, 60, 55); */
   width: 3.5rem;
-  /* padding: 1.5em; */
 }
 
 .element:hover{
@@ -63,7 +64,6 @@ h1{
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-
   align-items: end;
   height: 100vh;
   padding-bottom: 20%;
@@ -86,26 +86,26 @@ h1{
   flex-direction: column;
   justify-content: space-between;
   height: 70%;
-  width: 1fr;
-  font-size: 0.8em;
+  width: 20%;
+  font-size: 1.4em;
 }
 
 .control-container{
   display:flex;
   flex-direction: column;
+  align-items: center;
   align-self: flex-end;
-  /* height: 70%; */
+  width: 20%;
 }
 
 .game {
-  /* width: 3fr; */
+  width: 60%;
   margin: 0 10%
 }
 
 .control{
   padding:0;
   border:0 ;
-  width: 1fr;
   background: none;
 }
 
@@ -128,6 +128,12 @@ h1{
   display:none;
 }
 
+
+.position-container{
+  position: relative;
+}
+
+
 .game-over, .pause{
   justify-content: space-around;
   position: absolute;
@@ -135,16 +141,28 @@ h1{
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #F2E8C9;
-  border: 10px solid #F26A1B;
-  border-radius: 30%;
+  border: 5px solid #F26A1B;
+  border-radius: 40px / 50%;
   padding: 5%;
-  /* font-size: 1.5em; */
   text-align: center;
 }
 
-a{
+.text, .score{
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.header{
+  background-color: #F2B544;
+  padding: 5% 20%;
+  border-radius: 10% 10% 50% 50%;
+  transform: translate(0, -170%);
+}
+
+ a{
   text-decoration: none;
 }
+
 
 .index-container{
   display: flex;
@@ -157,4 +175,20 @@ a{
   border: 1px solid #F26A1B;
   border-radius: 20px;
   padding: 2% 5%;
+  font-size: 1.5em;
+  color:#F26A1B;
+  transition: background 0.8s;
+}
+
+.play-btn:hover{
+  background:#F26A1B radial-gradient(circle, transparent 1%, #F26A1B 1%) center/15000%;
+  color: white;
+}
+
+
+.title{
+  max-width: 30em;
+  height: auto;
+  animation: pulse;
+  animation-duration: 2s;
 }

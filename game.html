@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link
   rel="stylesheet"
@@ -15,10 +18,10 @@
 <body>
 
   <section class="game-over">
-    <div>
-      <div>Game Over</div>
+    <div class ="position-container">
+      <div class="header">Game Over</div>
     </div>
-    <div>Score</div>
+    <div class="text">Score</div>
     <div class="score">00</div>
     <div>
       <a class="control" id="home" href="./index.html">
@@ -29,15 +32,16 @@
   </section>
 
   <section class="pause">
-    <div>
-      <div>Pause</div>
+    <div class ="position-container">
+      <div class="header">Pause</div>
+      <div>Score</div>
+      <div class="score">00</div>
+      <div>
+        <button class="control" id="continue">
+          <img class = "control-image" src="./images/continue_icon.png" alt="">
+        </button>
     </div>
-    <div>Score</div>
-    <div class="score">00</div>
-    <div>
-      <button class="control" id="continue">
-        <img class = "control-image" src="./images/continue_icon.png" alt=""></button>
-    </div>
+  </div>
   </section>
 
 
