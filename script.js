@@ -12,14 +12,23 @@ let chosenElement = [Infinity, Infinity]
 let steps = Math.sqrt(elements.length)
 let pointsTag = document.querySelector("#points")
 let highestPointsTag = document.querySelector("#highest-points")
+let gameOverPopUp = document.querySelector(".game-over")
 let highestPoints = 0
-let timer = document.querySelector("#timer")
+let timerTag = document.querySelector("#timer")
+let timer
+const seconds = 10
+let timeLeft = seconds
 let points = 0
 let swapped = false
 //Functions
 
 
 // Randomly color the elements
+
+const startGame = ()=>{
+  generateRandomImages()
+  startTimer()
+}
 
 const generateRandomImages = () => {
   elements.forEach((element) => {
@@ -320,14 +329,37 @@ const increasePoints = (matchedElementsCount) => {
 
 
 const replayGame = () =>{
-  generateRandomImages()
   points = 0
   pointsTag.innerHTML = points
+  timeLeft = seconds
+  startGame()
+  //TODO: restart the timer
 }
+
+
+const runTimer = () =>{
+  timeLeft--
+  if(timeLeft >= 0){
+    timerTag.innerHTML = timeLeft
+  } else{
+    gameOver()
+  }
+}
+
+
+const gameOver = () => {
+  gameOverPopUp.style.display = "block"
+}
+
+
+const startTimer = () =>{
+  timer = setInterval(runTimer, 1000);
+}
+
 
 //event handlers
 
-generateRandomImages()
+startGame()
 
 elements.forEach((element, index) => {
   element.addEventListener('click', () => {

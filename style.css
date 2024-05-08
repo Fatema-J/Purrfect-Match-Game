@@ -62,7 +62,8 @@ h1{
 .container{
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: center;
+
   align-items: end;
   height: 100vh;
   padding-bottom: 20%;
@@ -97,7 +98,8 @@ h1{
 }
 
 .game {
-  width: 3fr;
+  /* width: 3fr; */
+  margin: 0 10%
 }
 
 .control{
@@ -115,4 +117,22 @@ h1{
 .control-image{
   max-height:5em;
   width: auto;
+}
+
+
+.game-over{
+  display:none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pop-up{
+  font-size: 1.5em;
+  background-color: #F2E8C9;
+  border: 10px solid #F26A1B;
+  text-align: center;
+
+
 }
