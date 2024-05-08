@@ -62,7 +62,8 @@ const swapElements = (chosenArray) => {
 
     chosenElement = [Infinity, Infinity]
   }
-
+  noMatchAnimation(chosenArray[0])
+  noMatchAnimation(chosenArray[1])
   chosenElement = [Infinity, Infinity]
 }
 
@@ -320,6 +321,13 @@ const dropAnimation = (position) =>{
   elements[position].classList.add("animate__animated", "animate__slideInDown")
   elements[position].addEventListener('animationend', () => {
     elements[position].classList.remove("animate__animated", "animate__slideInDown")
+  });
+}
+
+const noMatchAnimation = (position) =>{
+  elements[position].classList.add("animate__animated", "animate__shakeX")
+  elements[position].addEventListener('animationend', () => {
+    elements[position].classList.remove("animate__animated", "animate__shakeX")
   });
 }
 
