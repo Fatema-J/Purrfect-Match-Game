@@ -1,10 +1,10 @@
-# Purrfect Match Game 🌈
+# Purrfect Match Game 🐈🐾
 
 ## Description
 
-Welcome to the exciting world of our match-3 puzzle game! In this colorful and addictive game, your goal is to strategically match three or more identical elements to earn points🎯
+Welcome to the exciting world of our match-3 puzzle game! In this colorful and addictive game, your goal is to strategically match three or more identical cats to earn points!🎯
 
-
+![Game UI](./images/game%20ui.png)
 
 ## Game Logic
 
@@ -27,6 +27,18 @@ Welcome to the exciting world of our match-3 puzzle game! In this colorful and a
 
 4. The player will earn points for matched elements. 
 
+5. Once the timer is up the game will be over and highest score will be recorded.
+
+
+## Features
+- animations
+- restart game option
+- pause game option
+- timer
+- score
+
+
+
 ## Additional Features
 
 
@@ -36,6 +48,7 @@ Welcome to the exciting world of our match-3 puzzle game! In this colorful and a
 - [x] Pause button
 - [ ] Drag instead of choosing
 - [x] Timer
+- [ ] Animations for the matched elements
 
 
 
