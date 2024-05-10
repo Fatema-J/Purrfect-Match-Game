@@ -49,19 +49,16 @@ const generateRandomImages = () => {
 
 const swapElements = (chosenArray) => {
   if(isMatched(chosenArray)){
-    
-    let tempImage = elements[chosenArray[0]].getAttribute("src")
 
+    let tempImage = elements[chosenArray[0]].getAttribute("src")
     elements[chosenArray[0]].setAttribute("src", elements[chosenArray[1]].getAttribute("src")) 
-  
     elements[chosenArray[1]].setAttribute("src", tempImage)
 
     swapped = true
     increasePoints(findAllMatches().length)
-
     clearMatches(findAllMatches())
-
     chosenElement = [Infinity, Infinity]
+
   } else{
     noMatchAnimation(chosenArray[0])
     noMatchAnimation(chosenArray[1])
@@ -85,18 +82,14 @@ const isMatched = (chosenArray) => {
    * check right , left, up, between horizontal
   */
   if(i0 == i1+steps){ 
-    if(checkAround(i1, firstImage, 1, 2) ||
-    checkAround(i1, firstImage, -1, -2) ||
-    checkAround(i1, firstImage, -steps, -steps*2) ||
-    checkAround(i1, firstImage, -1, 1) ){
-      return true
-    }
-    if(checkAround(i0, secondImage, 1, 2) ||
-    checkAround(i0, secondImage, -1, -2) ||
-    checkAround(i0, secondImage, steps, steps*2) ||
-    checkAround(i0, secondImage, -1, 1) ){
-      return true
-    }
+    return (checkAdjacent(i1, firstImage, 1, 2) ||
+    checkAdjacent(i1, firstImage, -1, -2) ||
+    checkAdjacent(i1, firstImage, -steps, -steps*2) ||
+    checkAdjacent(i1, firstImage, -1, 1) ||
+    checkAdjacent(i0, secondImage, 1, 2) ||
+    checkAdjacent(i0, secondImage, -1, -2) ||
+    checkAdjacent(i0, secondImage, steps, steps*2) ||
+    checkAdjacent(i0, secondImage, -1, 1) )
   }
 
   /** [ 0 , 0 , 0]
@@ -105,18 +98,13 @@ const isMatched = (chosenArray) => {
    * check left, up, down, between vertical
   */  
   if(i0 == i1+1){
-    if( checkAround(i1, firstImage, -1, -2) ||
-    checkAround(i1, firstImage, -steps, -steps*2) ||
-    checkAround(i1, firstImage, steps, steps*2) || 
-    checkAround(i1, firstImage, -steps, steps)){
-      return true
-    }
-    if( checkAround(i0, secondImage, 1, 2) ||
-    checkAround(i0, secondImage, -steps, -steps*2) ||
-    checkAround(i0, secondImage, steps, steps*2) || 
-    checkAround(i0, secondImage, -steps, steps)){
-      return true
-    }
+    return ( checkAdjacent(i1, firstImage, -1, -2) ||
+    checkAdjacent(i1, firstImage, -steps, -steps*2) ||
+    checkAdjacent(i1, firstImage, steps, steps*2) || 
+    checkAdjacent(i1, firstImage, -steps, steps) ||checkAdjacent(i0, secondImage, 1, 2) ||
+    checkAdjacent(i0, secondImage, -steps, -steps*2) ||
+    checkAdjacent(i0, secondImage, steps, steps*2) || 
+    checkAdjacent(i0, secondImage, -steps, steps))
   }
 
   /** [ 0 , i0, 0]
@@ -125,18 +113,14 @@ const isMatched = (chosenArray) => {
    * check right , left, down, between horizontal
   */
   if(i1 == i0+steps){ 
-    if(checkAround(i1, firstImage, 1, 2) ||
-    checkAround(i1, firstImage, -1, -2) ||
-    checkAround(i1, firstImage, steps, steps*2) ||
-    checkAround(i1, firstImage, -1, 1) ){
-      return true
-    }
-    if(checkAround(i0, secondImage, 1, 2) ||
-    checkAround(i0, secondImage, -1, -2) ||
-    checkAround(i0, secondImage, -steps, -steps*2) ||
-    checkAround(i0, secondImage, -1, 1) ){
-      return true
-    }
+    return (checkAdjacent(i1, firstImage, 1, 2) ||
+    checkAdjacent(i1, firstImage, -1, -2) ||
+    checkAdjacent(i1, firstImage, steps, steps*2) ||
+    checkAdjacent(i1, firstImage, -1, 1) ||
+    checkAdjacent(i0, secondImage, 1, 2) ||
+    checkAdjacent(i0, secondImage, -1, -2) ||
+    checkAdjacent(i0, secondImage, -steps, -steps*2) ||
+    checkAdjacent(i0, secondImage, -1, 1) )
   }
 
   /** [ 0 , 0 , 0]
@@ -145,31 +129,27 @@ const isMatched = (chosenArray) => {
    * check right, up, down, between vertical
   */  
   if(i1 == i0+1){
-    if( checkAround(i1, firstImage, 1, 2) ||
-    checkAround(i1, firstImage, -steps, -steps*2) ||
-    checkAround(i1, firstImage, steps, steps*2) || 
-    checkAround(i1, firstImage, -steps, steps)){
-      return true
-    }
-    if( checkAround(i0, secondImage, -1, -2) ||
-    checkAround(i0, secondImage, -steps, -steps*2) ||
-    checkAround(i0, secondImage, steps, steps*2) || 
-    checkAround(i0, secondImage, -steps, steps)){
-      return true
-    }
+    return ( checkAdjacent(i1, firstImage, 1, 2) ||
+    checkAdjacent(i1, firstImage, -steps, -steps*2) ||
+    checkAdjacent(i1, firstImage, steps, steps*2) || 
+    checkAdjacent(i1, firstImage, -steps, steps)||
+    checkAdjacent(i0, secondImage, -1, -2) ||
+    checkAdjacent(i0, secondImage, -steps, -steps*2) ||
+    checkAdjacent(i0, secondImage, steps, steps*2) || 
+    checkAdjacent(i0, secondImage, -steps, steps))
   }
+
+
+
   return false
 }
 
-const checkAround = (i1, image, adj1, adj2) =>{
+
+
+const checkAdjacent = (position, image, adj1, adj2) =>{
   try {
-    if (image === elements[i1 + adj1].getAttribute("src")) {
-  
-      if (image === elements[i1 + adj2].getAttribute("src")) {
-        return true
-      }
-    }
-    return false
+    return (image === elements[position + adj1].getAttribute("src") &&
+        image === elements[position + adj2].getAttribute("src"))
   } catch (error) {
     return false
   }
