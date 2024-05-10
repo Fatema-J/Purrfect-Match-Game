@@ -4,7 +4,27 @@
 
 Welcome to the exciting world of our match-3 puzzle game! In this colorful and addictive game, your goal is to strategically match three or more identical cats to earn points!🎯
 
+![Logo](./images/logo.png)
 ![Game UI](./images/game%20ui.png)
+
+## Installation Instructions
+
+_You can play it online here [Purrfect Match](https://purrfectmatch.surge.sh/index.html)_
+
+1. Clone the repository
+
+``` 
+git clone https://github.com/Fatema-J/Purrfect-Match-Game.git 
+```
+
+
+2. Navagate to the project directory
+```
+cd Purrfect-Match-Game
+```
+
+3. Open the index.html file in your browser, and enjoy the game!
+
 
 ## Game Logic
 
@@ -55,3 +75,5 @@ Welcome to the exciting world of our match-3 puzzle game! In this colorful and a
 ## Credits
 
 The concept for **Purrfect Match Game** was inspired by Candy Crush Saga.
+
+

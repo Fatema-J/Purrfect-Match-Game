@@ -343,6 +343,7 @@ const increasePoints = (matchedElementsCount) => {
   })
   pointsTag.innerHTML = points
   if(points>highestPoints){
+    highestPoints = points
     highestPointsTag.innerHTML = points
   }
 }
