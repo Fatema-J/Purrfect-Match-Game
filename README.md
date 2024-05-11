@@ -63,6 +63,7 @@ cd Purrfect-Match-Game
 - [ ] Drag instead of choosing
 - [x] Timer
 - [ ] Animations for the matched elements
+- [ ] Responsive
 
 
 
