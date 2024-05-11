@@ -5,7 +5,7 @@
 Welcome to the exciting world of our match-3 puzzle game! In this colorful and addictive game, your goal is to strategically match three or more identical cats to earn points!🎯
 
 ![Logo](./images/logo.png)
-![Game UI](./images/game%20ui.png)
+![Game UI](./images/gameplay.gif)
 
 ## Installation Instructions
 
@@ -28,15 +28,14 @@ cd Purrfect-Match-Game
 
 ## Game Logic
 
-1. The game generates an nxn grid of four different elements on the screen. Each cell in the grid can contain one of these elements.
-
+1. The game generates an nxn grid of five different cat types on the screen. Each cell in the grid can contain one of these types without initial matches.
 
 
 2. When the player choose an element, we need to:
     - Identify possible drag targets (i.e., adjacent cells where the element can be moved).
     - Check if the chosen element will make a match with adjacent elements.
     - If the chosen element will make a match (e.g., three or more identical elements in a row/column), allow the move.
-  
+
      
 3. If a match is allowed:
     - Delete the matched elements from the grid.
@@ -50,12 +49,7 @@ cd Purrfect-Match-Game
 5. Once the timer is up the game will be over and highest score will be recorded.
 
 
-## Features
-- animations
-- restart game option
-- pause game option
-- timer
-- score
+
 
 
 
@@ -74,6 +68,10 @@ cd Purrfect-Match-Game
 
 ## Credits
 
-The concept for **Purrfect Match Game** was inspired by Candy Crush Saga.
+- The concept for **Purrfect Match Game** was inspired by Candy Crush Saga.
 
+- The captivating cat images in this game were designed by the talented [Copilot designer](https://copilot.microsoft.com/) using the powerful DALLe.3 model. These images bring our feline friends to life and add charm to the gameplay.
 
+- We owe the smooth animations and delightful transitions to [Animate.css](https://animate.style/).
+
+- The interactive buttons that enhance the user interface were crafted using [csswand](https://www.csswand.dev/).

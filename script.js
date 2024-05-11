@@ -153,15 +153,16 @@ const checkAdjacent = (position, image, adj1, adj2) =>{
   } catch (error) {
     return false
   }
-  
 }
+
+
 
 const findAllMatches =() =>{
   elements = document.querySelectorAll('.element') //update elements
 
   let elementsToBeCleared = []
-  let rowTracer = 1
-  let colTracer = 1
+  let matchInRowCounter = 1
+  let matchInColCounter = 1
   for(let i = 0; i<steps; i++){
     //initial colors
     let rowImage = elements[i*steps].getAttribute("src")
@@ -171,47 +172,47 @@ const findAllMatches =() =>{
       
       //horizontally
       if(elements[i*steps+j].getAttribute("src") === rowImage){
-        rowTracer++
+        matchInRowCounter++
 
         if(j == steps-1){ //last item in the row
-          if (rowTracer >= 3){
-            for(let previous = 0 ; previous < rowTracer; previous++){
+          if (matchInRowCounter >= 3){
+            for(let previous = 0 ; previous < matchInRowCounter; previous++){
               // indicate the previous matching cells
               elementsToBeCleared.push(i*steps+j-previous)
             }
           }
-          rowTracer = 1
+          matchInRowCounter = 1
         }
       } else{
-        if (rowTracer >= 3){
-          for(let previous = 0 ; previous < rowTracer; previous++){
+        if (matchInRowCounter >= 3){
+          for(let previous = 0 ; previous < matchInRowCounter; previous++){
             elementsToBeCleared.push(i*steps+j-previous-1)
           }
         }
-        rowTracer = 1
+        matchInRowCounter = 1
         rowImage = elements[i*steps+j].getAttribute("src")
       }
 
       if(elements[j*steps+i].getAttribute("src") === colImage){
-        colTracer++
+        matchInColCounter++
 
         if(j== steps-1){
-          if(colTracer >= 3){
-            for(let t = 0 ; t < colTracer; t++){
+          if(matchInColCounter >= 3){
+            for(let t = 0 ; t < matchInColCounter; t++){
               previousPos = (t)*steps        
               elementsToBeCleared.push(j*steps+i-previousPos)
             }
           }
-          colTracer = 1
+          matchInColCounter = 1
         }
       } else{
-        if(colTracer >= 3){
-          for(let t = 0 ; t < colTracer; t++){
+        if(matchInColCounter >= 3){
+          for(let t = 0 ; t < matchInColCounter; t++){
             previousPos = (t+1)*steps
             elementsToBeCleared.push(j*steps+i-previousPos)
           }
         }
-        colTracer = 1
+        matchInColCounter = 1
         colImage = elements[j*steps+i].getAttribute("src")
       }
 
