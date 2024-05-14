@@ -194,3 +194,30 @@ a{
   animation: pulse;
   animation-duration: 2s;
 }
+
+/* smartphones, iPhone, portrait 480x320 phones */
+@media screen and (max-width: 480px)  { 
+  .container{
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .control-container{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .game{
+    width: 80%;
+  }
+  .side-items-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70%;
+    width: 100%;
+    font-size: 1em;
+  }
+}
